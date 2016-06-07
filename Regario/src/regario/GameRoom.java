@@ -15,12 +15,12 @@ import javafx.scene.canvas.GraphicsContext;
 class GameRoom {
 
     ArrayList<GameObject> objects = new ArrayList<GameObject>();
-
+    
+    
     void update(long l) {
         for (GameObject o : objects) {
             o.update(l);
         }
-        
     }
 
     void render(long l, GraphicsContext g) {
@@ -32,6 +32,4 @@ class GameRoom {
     public void addObject(GameObject o) {
         objects.add(o);
     }
-    
-    
 }

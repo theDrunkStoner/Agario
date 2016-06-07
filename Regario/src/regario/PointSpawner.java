@@ -13,11 +13,7 @@ import javafx.scene.paint.Color;
  */
 public class PointSpawner {
 
-    public PointSpawner(GameRoom room) {
-        this.room = room;
-    }
-
-    GameRoom room;
+    RoomGame room;
 
     public static Color hex(int rgb) {
         java.awt.Color c = new java.awt.Color(rgb);
@@ -29,16 +25,21 @@ public class PointSpawner {
 
         return new Color(r, g, b, a);
     }
-    
-    Color[] cols = {};
-    
+
+    Color[] cols = {hex(0xFFF63C),
+        hex(0xFF693D),
+        hex(0xDBE537),
+        hex(0x002D40)};
+
     public void update() {
-        if(Math.random() < 0.01){
-            float angle = (float)(Math.random()*Math.PI*2);
+        if (Math.random() < 0.1) {
+            float angle = (float) (Math.random() * Math.PI * 2);
             float distance = 1000;
-            int x = (int)(Math.cos(angle)*distance);
-            int y = (int)(Math.sin(angle)*distance);
-            Point p = new Point(x, y, null, 1);
+            int x = (int) (Math.cos(angle) * distance + room.p.x);
+            int y = (int) (Math.sin(angle) * distance + room.p.y);
+            int score = 1 + (int) (Math.random() * 10);
+            Point p = new Point(x, y, cols[(int) (cols.length * Math.random())], score);
+            room.points.add(p);
         }
     }
 }

@@ -19,11 +19,12 @@ class RoomGame extends GameRoom {
                 mouseY = (int) e.getSceneY();
             }
         });
+        spawner.room = this;
     }
-    
+
     ArrayList<Point> points = new ArrayList<Point>();
-    PointSpawner spawner;
-    
+    PointSpawner spawner = new PointSpawner();
+
     double camX, camY;
     int mouseX;
     int mouseY;
@@ -41,17 +42,21 @@ class RoomGame extends GameRoom {
         int gridSize = 30;
         g.setLineWidth(0.5);
         for (int x = 0; x <= Regario.WIDTH / gridSize + 1; x++) {
-            double ox = ((int) camX) % gridSize*2;
+            double ox = ((int) camX) % gridSize * 2;
             g.strokeLine(x * 30 + ox, 0, x * 30 + ox, Regario.HEIGHT);
         }
         for (int y = 0; y <= Regario.HEIGHT / gridSize + 1; y++) {
-            double oy = ((int) camY) % gridSize*2;
+            double oy = ((int) camY) % gridSize * 2;
             g.strokeLine(0, y * gridSize + oy, Regario.WIDTH, y * gridSize + oy);
         }
 
-        g.translate(-camX, -camY);
+        g.translate(camX * 2 + Regario.WIDTH / 2, camY * 2 + Regario.HEIGHT / 2);
         super.render(l, g);
-        g.translate(camX, camY);
+        for (Point p : points) {
+            p.render(g);
+        }
+        g.translate(-camX * 2 - Regario.WIDTH / 2, -camY * 2 - Regario.HEIGHT / 2);
+
     }
 
     public static Color hex(int rgb) {
@@ -67,8 +72,8 @@ class RoomGame extends GameRoom {
 
     @Override
     void update(long l) {
-        camX = p.x - Regario.WIDTH/2;
-        camY = p.y - Regario.HEIGHT/2;
+        camX = p.x;
+        camY = p.y;
         super.update(l);
         spawner.update();
     }
