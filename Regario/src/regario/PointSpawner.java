@@ -35,8 +35,8 @@ public class PointSpawner {
         if (Math.random() < 0.1) {
             float angle = (float) (Math.random() * Math.PI * 2);
             float distance = 1000;
-            int x = (int) (Math.cos(angle) * distance + room.p.x);
-            int y = (int) (Math.sin(angle) * distance + room.p.y);
+            int x = (int) (Math.cos(angle) * distance - room.p.x);
+            int y = (int) (Math.sin(angle) * distance - room.p.y);
             int score = 1 + (int) (Math.random() * 10);
             Point p = new Point(x, y, cols[(int) (cols.length * Math.random())], score);
             room.points.add(p);
