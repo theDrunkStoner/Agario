@@ -25,7 +25,7 @@ class Point {
     }
     
     public void render(GraphicsContext g){
-         int size = 4 + score/2;
+        int size = 4 + score/2;
         g.setFill(color);
         g.fillOval(x - size, y - size, size * 2, size * 2);
     }

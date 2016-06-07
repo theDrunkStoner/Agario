@@ -5,6 +5,7 @@
  */
 package regario;
 
+import java.util.ArrayList;
 import javafx.scene.paint.Color;
 
 /**
@@ -32,14 +33,29 @@ public class PointSpawner {
         hex(0x002D40)};
 
     public void update() {
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.2) {
             float angle = (float) (Math.random() * Math.PI * 2);
             float distance = 1000;
-            int x = (int) (Math.cos(angle) * distance - room.p.x);
-            int y = (int) (Math.sin(angle) * distance - room.p.y);
+            int x = (int) (Math.cos(angle) * distance - room.p.x * 2);
+            int y = (int) (Math.sin(angle) * distance - room.p.y * 2);
             int score = 1 + (int) (Math.random() * 10);
             Point p = new Point(x, y, cols[(int) (cols.length * Math.random())], score);
             room.points.add(p);
         }
+        while (room.points.size() > 300) {
+            room.points.remove(0);
+        }
+        ArrayList<Point> remove = new ArrayList<Point>();
+        double px = -room.p.x * 2;
+        double py = -room.p.y * 2;
+        for (Point p : room.points) {
+            double d = Math.sqrt((px - p.x) * (px - p.x) + (py - p.y) * (py - p.y));
+            if( d < 50){
+                remove.add(p);
+                room.score += p.score;
+            }
+        }
+        for(Point p:remove)
+            room.points.remove(p);
     }
 }

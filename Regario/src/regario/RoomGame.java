@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 class RoomGame extends GameRoom {
 
@@ -35,6 +36,8 @@ class RoomGame extends GameRoom {
 
     ObjectPlayer p;
 
+    int score = 0;
+
     @Override
     void render(long l, GraphicsContext g) {
         g.setGlobalBlendMode(BlendMode.SRC_OVER);
@@ -56,8 +59,14 @@ class RoomGame extends GameRoom {
             p.render(g);
         }
         g.translate(-camX * 2 - Regario.WIDTH / 2, -camY * 2 - Regario.HEIGHT / 2);
-
+        g.setFill(Color.WHITE);
+        if (font == null) {
+            font = new Font("Arial", 30);
+        }
+        g.setFont(font);
+        g.fillText("Score: " + score, 20, 50);
     }
+    Font font;
 
     public static Color hex(int rgb) {
         java.awt.Color c = new java.awt.Color(rgb);
