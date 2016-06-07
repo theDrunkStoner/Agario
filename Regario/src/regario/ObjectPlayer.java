@@ -27,6 +27,15 @@ class ObjectPlayer extends GameObject {
         int mx = r.mouseX-Regario.WIDTH/2;
         int my = r.mouseY-Regario.HEIGHT/2;
         
+        
+        double length = Math.sqrt((mx*mx) + (my*my));
+        if(length >= 200){
+            double l2 = 200;
+            double f = l2/length;
+            mx *= f;
+            my *= f;
+        }
+        
         x -= mx/100f;
         y -= my/100f;
         
