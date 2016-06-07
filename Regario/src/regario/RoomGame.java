@@ -1,7 +1,7 @@
 package regario;
 
+import java.util.ArrayList;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +20,10 @@ class RoomGame extends GameRoom {
             }
         });
     }
-
+    
+    ArrayList<Point> points = new ArrayList<Point>();
+    PointSpawner spawner;
+    
     double camX, camY;
     int mouseX;
     int mouseY;
@@ -67,6 +70,7 @@ class RoomGame extends GameRoom {
         camX = p.x - Regario.WIDTH/2;
         camY = p.y - Regario.HEIGHT/2;
         super.update(l);
+        spawner.update();
     }
 
 }
