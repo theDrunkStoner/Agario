@@ -14,7 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 class Game {
 
     public Game(GameRoom room) {
-        this.room = room;
+        changeRoom(room);
     }
     
     public void update(long l) {
@@ -26,4 +26,9 @@ class Game {
     }
     
     GameRoom room;
+
+    void changeRoom(GameRoom room) {
+        this.room = room;
+        room.init();
+    }
 }

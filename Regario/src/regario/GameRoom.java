@@ -32,4 +32,8 @@ class GameRoom {
     public void addObject(GameObject o) {
         objects.add(o);
     }
+    
+    
+    void init() {
+    }
 }

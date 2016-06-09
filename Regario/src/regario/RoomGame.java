@@ -22,6 +22,8 @@ class RoomGame extends GameRoom {
         });
         spawner.room = this;
     }
+    
+    long starttime = System.currentTimeMillis();
 
     ArrayList<Point> points = new ArrayList<Point>();
     PointSpawner spawner = new PointSpawner();
@@ -65,6 +67,9 @@ class RoomGame extends GameRoom {
         }
         g.setFont(font);
         g.fillText("Score: " + score, 20, 50);
+        
+        long timeLeft = 60000 - System.currentTimeMillis() + starttime;
+        g.fillText(String.format("Time left: %2.1fs", timeLeft/1000f), 20, 80);
     }
     Font font;
 
@@ -85,6 +90,9 @@ class RoomGame extends GameRoom {
         camY = p.y;
         super.update(l);
         spawner.update();
+        long timeLeft = 6000 - System.currentTimeMillis() + starttime;
+        if(timeLeft < 0)
+            Regario.game.changeRoom(new RoomGameOver(score));
     }
 
 }
