@@ -18,13 +18,15 @@ public class Regario extends Application {
     public static final int WIDTH = 1280, HEIGHT = 720;
     public static Canvas canvas;
     public static Stage mainStage;
-
+    public static StackPane stackPane;
+    public static Scene scene;
+    
     @Override
     public void start(Stage stage) {
         mainStage = stage;
         stage.initStyle(StageStyle.TRANSPARENT);
 
-        StackPane stackPane = new StackPane();
+        stackPane = new StackPane();
 
         stackPane.setStyle(
                 "-fx-background-color: rgba(0,0,0,0.5);"
@@ -50,7 +52,7 @@ public class Regario extends Application {
             }
         }.start();
 
-        Scene scene = new Scene(stackPane, WIDTH, HEIGHT);
+        scene = new Scene(stackPane, WIDTH, HEIGHT);
         scene.setFill(Color.TRANSPARENT);
 
         stage.setScene(scene);

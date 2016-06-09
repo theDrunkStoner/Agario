@@ -90,7 +90,7 @@ class RoomGame extends GameRoom {
         camY = p.y;
         super.update(l);
         spawner.update();
-        long timeLeft = 6000 - System.currentTimeMillis() + starttime;
+        long timeLeft = 60000 - System.currentTimeMillis() + starttime;
         if(timeLeft < 0)
             Regario.game.changeRoom(new RoomGameOver(score));
     }
